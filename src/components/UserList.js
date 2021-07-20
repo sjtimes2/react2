@@ -24,6 +24,7 @@ export default function UserList() {
             <th>First name</th>
             <th>Age</th>
             <th>Joining Date</th>
+            <th>Skill</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@ export default function UserList() {
               <td>{user.firstname}</td>
               <td>{user.age}</td>
               <td>{user.doj}</td>
+              <td>{user.skill}</td>
             </tr>
           })}
         </tbody>
