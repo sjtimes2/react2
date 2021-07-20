@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react"
 import { Button, Dropdown } from 'react-bootstrap';
-
+import Messages from "./Messages";
 export default function UserForm() {
 
   const [userform, setUserForm] = useState({ firstname: "Shubham", age: 20 });
+  const [messages, setMessages] = useState({ myMessage: "Default Message" });
   const handleEvent = function (event) {
     setUserForm({ ...userform, [event.target.name]: event.target.value })
   }
@@ -13,6 +14,10 @@ export default function UserForm() {
     console.log(userform);
     const promise = axios.post("http://localhost:4200/users", userform);
     promise.then(function (response) {
+      setMessages({
+        ...messages,
+        myMessage: "Success!"
+      })
       console.log(response);
     })
   }
@@ -24,6 +29,7 @@ export default function UserForm() {
 
   return (
     <div className="form-group">
+      <Messages message={messages.myMessage} />
       <h3>Create User</h3>
 
       <label htmlFor="firstname">First Name</label>

@@ -38,6 +38,34 @@
       "skill": "CSS",
       "doj": "2021-07-15",
       "id": 10
+    },
+    {
+      "firstname": "Shubhamghd",
+      "age": "203",
+      "skill": "JavaScript",
+      "id": 11
+    },
+    {
+      "firstname": "Shubhamghd",
+      "age": "203",
+      "skill": "JavaScript",
+      "doj": "2021-07-23",
+      "id": 12
+    },
+    {
+      "firstname": "Shubham",
+      "age": 20,
+      "id": 13
+    },
+    {
+      "firstname": "Shubham",
+      "age": 20,
+      "id": 14
+    },
+    {
+      "firstname": "Shubham",
+      "age": 20,
+      "id": 15
     }
   ]
 }

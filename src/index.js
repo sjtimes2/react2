@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Header from './components/Header'
+import Messages from './components/Messages';
 
 ReactDOM.render(
   <React.StrictMode>

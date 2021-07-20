@@ -1,7 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import Counter from "./Counter";
 
 export default function UserList() {
+
+  function myfun(event) {
+    console.log(event);
+  }
 
   const [users, setUsers] = useState([]);
   useEffect(function () {
@@ -18,6 +23,7 @@ export default function UserList() {
   })
   return (
     <div>
+      <Counter count={users.length}></Counter>
       <table className="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -25,6 +31,7 @@ export default function UserList() {
             <th>Age</th>
             <th>Joining Date</th>
             <th>Skill</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +41,7 @@ export default function UserList() {
               <td>{user.age}</td>
               <td>{user.doj}</td>
               <td>{user.skill}</td>
+              <td><button className="btn btn-danger" onClick={myfun}>Delete</button></td>
             </tr>
           })}
         </tbody>
