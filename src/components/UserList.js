@@ -1,23 +1,37 @@
-import { useState } from "react"
+import axios from "axios";
+import { useEffect, useState } from "react"
 
 export default function UserList() {
 
   const [users, setUsers] = useState([]);
+  useEffect(function () {
 
+    if(users.length != 0) {
+      return;
+    }
+    console.log("useEffect called");
+    const promise = axios.get("http://localhost:4200/users");
+    promise.then((response) => {
+      console.log(response);
+      setUsers(...users, response.data)
+    })
+  })
   return (
     <div>
       <table className="table table-bordered table-striped table-hover">
         <thead>
           <tr>
-            <td>First name</td>
-            <td>Age</td>
+            <th>First name</th>
+            <th>Age</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Shubham</td>
-            <td>20</td>
-          </tr>
+          {users.map(function (user, index) {
+            return <tr>
+              <td>{user.firstname}</td>
+              <td>{user.age}</td>
+            </tr>
+          })}
         </tbody>
       </table>
     </div>
