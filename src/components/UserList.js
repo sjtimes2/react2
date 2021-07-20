@@ -6,7 +6,7 @@ export default function UserList() {
   const [users, setUsers] = useState([]);
   useEffect(function () {
 
-    if(users.length != 0) {
+    if(users.length !== 0) {
       return;
     }
     console.log("useEffect called");
@@ -23,13 +23,15 @@ export default function UserList() {
           <tr>
             <th>First name</th>
             <th>Age</th>
+            <th>Joining Date</th>
           </tr>
         </thead>
         <tbody>
           {users.map(function (user, index) {
-            return <tr>
+            return <tr key={index}>
               <td>{user.firstname}</td>
               <td>{user.age}</td>
+              <td>{user.doj}</td>
             </tr>
           })}
         </tbody>

@@ -18,7 +18,7 @@ export default function UserForm() {
   }
 
   return (
-    <div>
+    <div className="form-group">
       <h3>Create User</h3>
       <input placeholder="first name" name='firstname' value={userform.firstname} onChange={handleEvent}></input>
       <input placeholder="age" type="number" name='age' value={userform.age} onChange={handleEvent}></input>
