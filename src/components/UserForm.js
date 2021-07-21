@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react"
-import { Button, Dropdown } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Messages from "./Messages";
 export default function UserForm() {
 
@@ -12,7 +12,7 @@ export default function UserForm() {
 
   const save = function (event) {
     console.log(userform);
-    const promise = axios.post("http://localhost:4200/users", userform);
+    const promise = axios.post(process.env.REACT_APP_SERVER_URL, userform);
     promise.then(function (response) {
       setMessages({
         ...messages,
@@ -40,7 +40,7 @@ export default function UserForm() {
       <input className="form-control" name="doj" value={userform.joiningDate} type="date" onChange={handleEvent}></input>
 
       <select onChange={handleSelectChange} name="skill">
-        <option value="default" selected>Select the Skill</option>
+        <option value="default" defaultValue>Select the Skill</option>
         <option value="HTML">HTML</option>
         <option value="CSS">CSS</option>
         <option value="JavaScript">JavaScript</option>
