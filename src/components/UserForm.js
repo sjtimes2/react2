@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { Button } from 'react-bootstrap';
+import { getAllSkills, postSingleUser } from "../service";
 import Messages from "./Messages";
 import Userlist from "./UserList";
 export default function UserForm() {
@@ -10,9 +11,7 @@ export default function UserForm() {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    axios.get(process.env.REACT_APP_SERVER_SKILLS_URL)
-    .then(response => setSkills(response.data))
-
+    getAllSkills(response => setSkills(response.data));
   }, [])
 
   const handleEvent = function (event) {
@@ -21,8 +20,7 @@ export default function UserForm() {
 
   const save = function (event) {
     console.log(userform);
-    const promise = axios.post(process.env.REACT_APP_SERVER_URL, userform);
-    promise.then(function (response) {
+    postSingleUser(userform, function (response) {
       setMessages({
         ...messages,
         myMessage: "Success!"

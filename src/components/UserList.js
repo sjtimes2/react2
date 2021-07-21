@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import { deleteSingleUser, getAllUsers } from "../service";
 import Counter from "./Counter";
 
 export default function Userlist() {
@@ -8,13 +9,11 @@ export default function Userlist() {
 
   useEffect(() => {
     console.log('called......................');
-    const promise = axios.get(process.env.REACT_APP_SERVER_URL);
-    promise.then(response => setUsers(response.data))
+    getAllUsers(response => setUsers(response.data))
   }, [])
 
   const deleteUser = function () {
-    const promise = axios.delete(process.env.REACT_APP_SERVER_URL + this);
-    promise.then(() => {
+    deleteSingleUser( this ,() => {
       users.splice(arguments[0], 1);
       const users1 = [...users];
       setUsers(users1);
