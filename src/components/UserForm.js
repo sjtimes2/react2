@@ -1,11 +1,20 @@
 import axios from "axios";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from 'react-bootstrap';
 import Messages from "./Messages";
+import Userlist from "./UserList";
 export default function UserForm() {
 
   const [userform, setUserForm] = useState({ firstname: "Shubham", age: 20 });
   const [messages, setMessages] = useState({ myMessage: "Default Message" });
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_SERVER_SKILLS_URL)
+    .then(response => setSkills(response.data))
+
+  }, [])
+
   const handleEvent = function (event) {
     setUserForm({ ...userform, [event.target.name]: event.target.value })
   }
@@ -40,10 +49,12 @@ export default function UserForm() {
       <input className="form-control" name="doj" value={userform.joiningDate} type="date" onChange={handleEvent}></input>
 
       <select onChange={handleSelectChange} name="skill">
-        <option value="default" defaultValue>Select the Skill</option>
-        <option value="HTML">HTML</option>
-        <option value="CSS">CSS</option>
-        <option value="JavaScript">JavaScript</option>
+        <option defaultValue value="default">Select the skill</option>
+        {
+          skills.map((skill) => {
+            return <option value={skill}>{skill}</option>
+          })
+        }
       </select>
 
       <Button onClick={save} >Save</Button>
